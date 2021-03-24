@@ -1,0 +1,263 @@
+MPASM  5.51                        EFFECT.ASM   6-29-2020  23:44:10         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001                         LIST            P=16F84A                 ;Kullanýlan PIC türü
+                      00002                         #INCLUDE        <P16F84A.INC>    ;PIC16F84A kutuphanesi dahil edýyoruz
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+0000                  00003                         ORG                     H'00'                    ;0. Satýrdan Program Baþlatýlýy
+                            or
+  0000000C            00004 SAYAC1          EQU                     H'0C'                    ; SAYAC1 DEGISKENINE H'0C' YUKLE
+  0000000D            00005 SAYAC2          EQU                     H'0D'                    ; SAYAC2 DEGISKENINE H'D' YUKLE
+  0000000E            00006 KNT                     EQU                     H'0E'                    ; KNT DEGISKENINE H'0E' YUKLE
+                      00007                         
+0000   1683           00008                         BSF                     STATUS,5                ;BANK1'E GEÇ
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0001   0186           00009                         CLRF            TRISB                   ;TRIB'YÝ TEMÝZLE(PORTB ÇIKIÞ)
+0002   30FF           00010                         MOVLW           H'FF'                   ;W'YE h'FF' YÜKLE
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0003   0085           00011                         MOVWF           TRISA                   ;W'YÝ TRISA'YA YÜKLE(PORTA GÝRÝÞ)
+0004   1283           00012                         BCF                     STATUS,5                ;BANK0'A GEÇ
+0005   0186           00013                         CLRF            PORTB                   ;PORTB'YÝ TEMÝZLE
+0006                  00014 SAG1
+0006   1805           00015                         BTFSC           PORTA,0                 ;PORTA'NIN 0. BÝTÝ '0' MI?
+0007   2812           00016                         GOTO            SOL1                    ;HAYIR. SOL1 ETÝKETÝNE GÝT
+0008   3003           00017                         MOVLW           H'03'                   ;EVET.  W'YE h'03' YÜKLE
+0009   008E           00018                         MOVWF           KNT                             ;W'YÝ KNT'YE YÜKLE
+000A                  00019 SAG
+000A   300F           00020                         MOVLW           H'0F'                   ;W'YE h'0F' YÜKLE
+000B   0086           00021                         MOVWF           PORTB                   ;W'YÝ PORTB'DEN ÇIK
+000C   2038           00022                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+000D   0186           00023                         CLRF            PORTB                   ;PORTB'YÝ TEMÝZLE
+000E   2038           00024                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+000F   0B8E           00025                         DECFSZ          KNT,F                   ;KNT'DEN '1' ÇIKAR KNT'YE YÜKLE. KNT '0'
+                             MÝ?
+0010   280A           00026                         GOTO            SAG                             ;HAYIR. BIR ETÝKETÝNE GÝT
+0011   2806           00027                         GOTO            SAG1                    ;EVET. SAG1 ETÝKETÝNE GÝT
+0012                  00028 SOL1
+0012   1885           00029                         BTFSC           PORTA,1                 ;PORTA'NIN 1. BÝTÝ 'O' MI?
+0013   281E           00030                         GOTO            TUM1                    ;HAYIR. TUM ETÝKETÝNE GÝT
+0014   3003           00031                         MOVLW           H'03'                   ;EVET. W'YE h'03' YÜKLE
+0015   008E           00032                         MOVWF           KNT                             ;W'YÝ KNT'YE YÜKLE
+0016                  00033 SOL
+0016   30F0           00034                         MOVLW           H'F0'                   ;W'YE h'F0' YÜKLE
+0017   0086           00035                         MOVWF           PORTB                   ;W'YÝ PORTB'DEN ÇIK
+0018   2038           00036                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+0019   0186           00037                         CLRF            PORTB                   ;PORTB'YÝ TEMÝZLE
+001A   2038           00038                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+001B   0B8E           00039                         DECFSZ          KNT,F                   ;KNT'DEN '1' ÇIKAR KNT'YE YÜKLE. KNT '0'
+                             MÝ?
+MPASM  5.51                        EFFECT.ASM   6-29-2020  23:44:10         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001C   2816           00040                         GOTO            SOL                             ;HAYIR. IKI ETÝKETÝNE GÝT
+001D   2806           00041                         GOTO            SAG1                    ;EVET. SAG1 ETÝKETÝNE GÝT
+001E                  00042 TUM1
+001E   1905           00043                         BTFSC           PORTA,2                 ;PORTA'NIN 2. BÝTÝ 'O' MI?
+001F   282A           00044                         GOTO            SAG_SOL1                ;HAYIR. SAG_SOL1 ETÝKETÝNE GÝT
+0020   3003           00045                         MOVLW           H'03'                   ;EVET. W'YE h'03' YÜKLE
+0021   008E           00046                         MOVWF           KNT                             ;W'YÝ KNT'YE YÜKLE
+0022                  00047 TUM
+0022   30FF           00048                         MOVLW           H'FF'                   ;W'YE h'FF' YÜKLE
+0023   0086           00049                         MOVWF           PORTB                   ;W'YÝ PORTB'DEN ÇIK
+0024   2038           00050                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+0025   0186           00051                         CLRF            PORTB                   ;PORTB'YÝ TEMÝZLE
+0026   2038           00052                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+0027   0B8E           00053                         DECFSZ          KNT,F                   ;KNT'DEN '1' ÇIKAR KNT'YE YÜKLE. KNT '0'
+                             MÝ?
+0028   2822           00054                         GOTO            TUM                             ;HAYIR. TUM ETÝKETÝNE GÝT
+0029   2806           00055                         GOTO            SAG1                    ;EVET. SAG1 ETÝKETÝNE GÝT
+002A                  00056 SAG_SOL1
+002A   1985           00057                         BTFSC           PORTA,3                 ;PORTA'NIN 3. BÝTÝ 'O' MI?
+002B   2806           00058                         GOTO            SAG1                    ;HAYIR. SAG1 ETÝKETÝNE GÝT
+002C   3003           00059                         MOVLW           H'03'                   ;EVET. W'YE h'03' YÜKLE
+002D   008E           00060                         MOVWF           KNT                             ;W'YÝ KNT'YE YÜKLE
+002E                  00061 SAG_SOL
+002E   300F           00062                         MOVLW           H'0F'                   ;W'YE h'0F' YÜKLE
+002F   0086           00063                         MOVWF           PORTB                   ;W'YÝ PORTB'DEN ÇIK
+0030   2038           00064                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+0031   30F0           00065                         MOVLW           H'F0'                   ;W'YE h'F0' YÜKLE
+0032   0086           00066                         MOVWF           PORTB                   ;W'YÝ PORTB'DEN ÇIK
+0033   2038           00067                         CALL            GECIKME                 ;ZAMAN ALT PROGRAMINI ÇAÐIR
+0034   0B8E           00068                         DECFSZ          KNT,F                   ;KNT'DEN '1' ÇIKAR KNT'YE YÜKLE. KNT '0'
+                             MÝ?
+0035   282E           00069                         GOTO            SAG_SOL                 ;HAYIR. SAG_SOL ETÝKETÝNE GÝT
+0036   0186           00070                         CLRF            PORTB                   ;EVET. PORTB'YÝ TEMÝZLE
+0037   2806           00071                         GOTO            SAG1                    ;SAG1 ETÝKETÝNE GÝT
+0038                  00072 GECIKME         
+0038   30FF           00073                         MOVLW           H'FF'                   ;W'YE h'FF' YÜKLE
+0039   008C           00074                         MOVWF           SAYAC1                  ;W'YÝ SAYAC1'E YÜKLE 
+003A                  00075 DONGU1
+003A   30FF           00076                         MOVLW           H'FF'                   ;W'YE h'FF' YÜKLE
+003B   008D           00077                         MOVWF           SAYAC2                  ;W'YÝ SAYAC2'E YÜKLE 
+003C                  00078 DONGU2          
+003C   0B8D           00079                         DECFSZ          SAYAC2,F                ;SAYAC2'DEN '1' ÇIKAR SAYAC2'YE YÜKLE. S
+                            AY2 '0' MÝ?             
+003D   283C           00080                         GOTO            DONGU2                  ;HAYIR. DONGU2 ETÝKETÝNE GÝT
+003E   0B8C           00081                         DECFSZ          SAYAC1,F                ;EVET. SAYAC1'DEN '1' ÇIKAR SAY1'YE YÜKL
+                            E. SAY1 '0' MÝ? 
+003F   283A           00082                         GOTO            DONGU1                  ;HAYIR. DONGU1 ETÝKETÝNE GÝT
+0040   0008           00083                         RETURN                                          ;EVET. ALT PROGRAMIN SONU       
+                      00084                         END                                                     ;PROGRAMIN SONU 
+MPASM  5.51                        EFFECT.ASM   6-29-2020  23:44:10         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+DC                                00000001
+DONGU1                            0000003A
+DONGU2                            0000003C
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GECIKME                           00000038
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+KNT                               0000000E
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+SAG                               0000000A
+SAG1                              00000006
+MPASM  5.51                        EFFECT.ASM   6-29-2020  23:44:10         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SAG_SOL                           0000002E
+SAG_SOL1                          0000002A
+SAYAC1                            0000000C
+SAYAC2                            0000000D
+SOL                               00000016
+SOL1                              00000012
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TUM                               00000022
+TUM1                              0000001E
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+MPASM  5.51                        EFFECT.ASM   6-29-2020  23:44:10         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : X--------------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    65
+Program Memory Words Free:   959
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

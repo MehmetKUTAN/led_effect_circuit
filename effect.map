@@ -1,0 +1,52 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Mon Jun 29 23:44:11 2020
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000082
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000040      
+            65 out of 1094 program addresses used, program memory utilization is 5%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   DONGU1   0x00003a    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                   DONGU2   0x00003c    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                  GECIKME   0x000038    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                      SAG   0x00000a    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                     SAG1   0x000006    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                  SAG_SOL   0x00002e    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                 SAG_SOL1   0x00002a    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                      SOL   0x000016    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                     SOL1   0x000012    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                      TUM   0x000022    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                     TUM1   0x00001e    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     SAG1   0x000006    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                      SAG   0x00000a    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                     SOL1   0x000012    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                      SOL   0x000016    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                     TUM1   0x00001e    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                      TUM   0x000022    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                 SAG_SOL1   0x00002a    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                  SAG_SOL   0x00002e    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                  GECIKME   0x000038    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                   DONGU1   0x00003a    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+                   DONGU2   0x00003c    program     static C:\Users\mehme\OneDrive\Masaüstü\Mehmet_KUTAN_170504023\Led_Efekt_Devresi\effect.asm
+
+
